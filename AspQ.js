@@ -31,7 +31,7 @@ var AspQ = function () {
             if (inner) return true;
             if (!async) return false;
             async = false;
-            queue.push({ id: '', args: form.__EVENTARGUMENT.value });
+            queue.push({ id: '', args: '' });
             return typeof Sys !== 'undefined' || queue.length <= 1;
         }
     };
