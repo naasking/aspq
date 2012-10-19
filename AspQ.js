@@ -1,3 +1,5 @@
+// copyright Sandro Magi 2012
+// LICENSE: LGPL
 var AspQ = function () {
     var queue = new Array();
     var inner = false;
