@@ -4,7 +4,18 @@ var AspQ = function () {
     var queue = new Array();
     var inner = false;
     var async = true;
-    function pb() { inner = true; var x = queue[0]; __doPostBack(x.el['name'] ? x.el.name : x.el.id, x.args); inner = false; }
+    function pb() {
+        inner = true;
+        while (queue.length > 0) {
+            var x = queue[0];
+            if ($get(x.el.id)) {
+                __doPostBack(x.el['name'] ? x.el.name : x.el.id, x.args);
+                break;
+            }
+            queue.shift();
+        }
+        inner = false;
+    }
     function gform(x) {
         if (x['form']) return x.form;
         while (x && x.nodeName != 'FORM') x = x.parentNode;
