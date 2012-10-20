@@ -22,8 +22,9 @@ var AspQ = function () {
         return x;
     }
     function init(sender, args) {
-        async = true;
         var x = args.get_postBackElement();
+        if (inner && x == queue[0].el) return;
+        async = true;
         queue[queue.length - 1] = { el: x, args: gform(x).__EVENTARGUMENT.value };
         if (queue.length > 1) args.set_cancel(true);
     }
@@ -48,7 +49,9 @@ var AspQ = function () {
         }
     };
 } ();
-if (typeof Sys != 'undefined')
-{
+if (window.attachEvent) { window.attachEvent('onload', AspQ.init); }
+else if (window.addEventListener) { window.addEventListener('load', AspQ.init, false); }
+else { window.addEventListener('load', AspQ.init, false); }
+if (typeof Sys != 'undefined') {
     Sys.Application.notifyScriptLoaded();
 }
