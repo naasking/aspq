@@ -59,6 +59,4 @@ var AspQ = function () {
 } ();
 if (window.attachEvent) { window.attachEvent('onload', AspQ.init); }
 else { window.addEventListener('load', AspQ.init, false); }
-if (typeof Sys != 'undefined') {
-    Sys.Application.notifyScriptLoaded();
-}
+if (typeof Sys !== 'undefined') Sys.Application.notifyScriptLoaded();
